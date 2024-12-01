@@ -29,8 +29,14 @@ Route::post('/medicines', [MedicineController::class, 'store']);
 
 
 // Supplier Routes
-Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('suppliers.create');
-Route::post('/suppliers', [SupplierController::class, 'store'])->name('suppliers.store');
 
 // Display a list of suppliers (index route)
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
+
+Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('suppliers.create');
+Route::post('/suppliers', [SupplierController::class, 'store'])->name('suppliers.store');
+Route::get('/suppliers/{supplier}/edit', [SupplierController::class, 'edit']);
+Route::patch('/suppliers/{supplier}', [SupplierController::class, 'update']);
+Route::delete('/suppliers/{supplier}', [SupplierController::class, 'destroy']);
+
+

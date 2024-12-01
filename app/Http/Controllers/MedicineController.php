@@ -68,7 +68,6 @@ class MedicineController extends Controller
     ]);
 
     // Add logging or debug here
-    \Log::debug('Updated Medicine:', $medicine->toArray());  // Log the updated data for debugging
 
     return redirect('/medicines/' . $medicine->id);    
 }

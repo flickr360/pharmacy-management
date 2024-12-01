@@ -42,4 +42,40 @@ class SupplierController extends Controller
         // Return the suppliers view with the suppliers data
         return view('supplier.index', compact('suppliers'));
     }
+
+    public function edit(Supplier $supplier)
+    {
+        return view('supplier.edit', ['supplier' => $supplier]);
+    }
+
+    public function update(Supplier $supplier)
+    {
+        request()->validate([
+            'name' => ['required', 'min:3'],
+            'address' => ['required'],
+            'email' => ['required'],
+            'phonenumber' => ['required'],
+            'paymentterms' => ['required'],
+        ]);
+    
+        // Update the supplier record
+        $supplier->update([
+            'name' => request('name'),
+            'address' => request('address'),
+            'email' => request('email'),
+            'phonenumber' => request('phonenumber'),
+            'paymentterms' => request('paymentterms'),
+        ]);
+    
+        // Add logging or debug here
+    
+        return redirect('/suppliers/');    
+    }
+
+    public function destroy(Supplier $supplier)
+    {
+        $supplier->delete();
+
+        return redirect('/suppliers');
+    }
 }
