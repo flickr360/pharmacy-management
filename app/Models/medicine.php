@@ -8,11 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Medicine extends Model
 {
-    protected $fillable = [
-        'medicine_name',
-        'otc',
-        'supplier_name',
-        'unit_price',
-    ];
+    use HasFactory;
+
+    protected $guarded =[];
 }
 

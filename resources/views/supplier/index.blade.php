@@ -1,10 +1,10 @@
 <!-- resources/views/suppliers/index.blade.php -->
 
 @extends('layouts.app')
-
-@section('content')
+<x-layout>
+  
+<x-slot:heading>Suppliers</x-slot:heading>
     <div class="container">
-        <h1>Suppliers</h1>
 
         <!-- Check if there's any success message -->
         @if (session('success'))
@@ -12,9 +12,11 @@
                 {{ session('success') }}
             </div>
         @endif
-
+        <p class="mt-6">
+           <x-form-button    href="{{ route('suppliers.create') }}">Add Supplier</x-button>
+        </p>
         <!-- Display a table of suppliers -->
-        <table class="table">
+        <table class="table rounded-md" style="background:white;">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -40,4 +42,7 @@
         <!-- Pagination Links -->
         {{ $suppliers->links() }}
     </div>
-@endsection
+</x-layout>
+
+
+

@@ -17,10 +17,10 @@
                     <a href=""><img class="w-10 h-10 bg-white rounded-xl py-1 px-1"src="{{ asset('img/icon.jfif') }}" alt=""></a>
                 </div>
                 <div class="">
-                <a class="mx-2 p-2 bg-gray-700 rounded-xl" href=""><button>Product</button></a>
-                <a class="mx-2 p-2 bg-gray-700 rounded-xl" href=""><button>Sales</button></a>
-                <a class="mx-2 p-2 bg-gray-700 rounded-xl" href=""><button>Reports</button></a>
-                <a class="mx-2 p-2 bg-gray-700 rounded-xl" href=""><button>Supplier</button></a>
+                <x-nav-link href="/medicines" :active="request()->is('medicines')"><button>Medicine</button></x-nav-link >
+                <x-nav-link href=""><button>Sales</button></x-nav-link >
+                <x-nav-link href=""><button>Reports</button></x-nav-link >
+                <x-nav-link href="/suppliers" :active="request()->is('suppliers')"><button>Supplier</button></x-nav-link >
                 </div>
 
             </div>
@@ -36,7 +36,7 @@
                                         <form method="POST" action="/logout">
                                             @csrf
 
-                                            <x-form-button>Log Out</x-form-button>
+                                            <x-logout-button>Log Out</x-logout-button>
                                         </form>
                                 @endauth
                             </div>
