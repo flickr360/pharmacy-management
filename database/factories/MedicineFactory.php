@@ -1,7 +1,10 @@
 <?php
 
 namespace Database\Factories;
+
+use App\Models\Supplier;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Medicine>
  */
@@ -19,7 +22,7 @@ $faker->addProvider(new \Bezhanov\Faker\Provider\Medicine($faker));
 
         return [
             'medicine_name' => $faker->medicine,
-            'supplier' => fake()->company(),
+            'supplier_id' => Supplier::factory(),
             'quantity' => random_int(10,200),
             'unit_price' =>  fake()->randomFloat(2, 5, 1000),
         ];

@@ -16,4 +16,9 @@ class Supplier extends Model
         'phonenumber',
         'paymentterms',
     ];
+    
+    public function medicines()
+    {
+        return $this->hasMany(Medicine::class);
+    }
 }

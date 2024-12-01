@@ -11,5 +11,10 @@ class Medicine extends Model
     use HasFactory;
 
     protected $guarded =[];
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }
 

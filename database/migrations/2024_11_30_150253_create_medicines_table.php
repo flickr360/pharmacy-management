@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->string('medicine_name');
-            //$table->string('category_id');
+            $table->foreignIdFor(\App\Models\Supplier::class);
             $table->boolean('otc')->default(true);
-            $table->string('supplier');
             $table->integer('quantity');
             $table->timestamp('expires_at')->nullable();
             $table->decimal('unit_price', 10, 2);
