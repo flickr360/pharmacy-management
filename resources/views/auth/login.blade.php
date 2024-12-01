@@ -1,40 +1,59 @@
-<x-layout>
-    <x-slot:heading>
-        Log In
-    </x-slot:heading>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/login-reg.css') }}"> <!-- Correct path to your CSS -->
+</head>
+<body>
 
-    <form method="POST" action="/login">
-        @csrf
+    <div class="form-container">
+        <div class="heading">
+            <h2>Log In</h2>
+        </div>
 
-        <div class="space-y-12">
-            <div class="border-b border-gray-900/10 pb-12">
-                <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <x-form-field>
-                        <x-form-label for="email">Email</x-form-label>
+        <form method="POST" action="/login">
+            @csrf
+            <div class="form-fields">
+                <!-- Email Field -->
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input
+                        name="email"
+                        id="email"
+                        type="email"
+                        required
+                    />
+                    <div class="error-message"></div>
+                </div>
 
-                        <div class="mt-2">
-                            <x-form-input name="email" id="email" type="email" :value="old('email')" required />
-
-                            <x-form-error name="email" />
-                        </div>
-                    </x-form-field>
-
-                    <x-form-field>
-                        <x-form-label for="password">Password</x-form-label>
-
-                        <div class="mt-2">
-                            <x-form-input name="password" id="password" type="password" required />
-
-                            <x-form-error name="password" />
-                        </div>
-                    </x-form-field>
+                <!-- Password Field -->
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input
+                        name="password"
+                        id="password"
+                        type="password"
+                        required
+                    />
+                    <div class="error-message"></div>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-            <x-form-button>Log In</x-form-button>
+            <!-- Action Buttons Section -->
+            <div class="action-buttons">
+                <a href="/" class="cancel-link">Cancel</a>
+                <button type="submit" class="submit-btn">Log In</button>
+            </div>
+        </form>
+
+        <!-- Link to Register Page -->
+        <div class="register-link-container">
+            <a href="{{ route('register') }}" class="register-link">Don't have an account? Register</a>
         </div>
-    </form>
-</x-layout>
+    </div>
+
+</body>
+</html>
