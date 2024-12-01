@@ -3,11 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class medicine extends Model
+
+class Medicine extends Model
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $fillable = [
+        'medicine_name',
+        'otc',
+        'supplier_name',
+        'unit_price',
+    ];
 }
+

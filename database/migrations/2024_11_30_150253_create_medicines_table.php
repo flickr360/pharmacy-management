@@ -15,15 +15,14 @@ return new class extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class);
             $table->string('medicine_name');
-            $table->string('category_id');
-            $table->boolean('otc');
+            //$table->string('category_id');
+            $table->boolean('otc')->default(true);
             $table->string('supplier');
             $table->integer('quantity');
             $table->timestamp('expires_at')->nullable();
             $table->decimal('unit_price', 10, 2);
-            $table->decimal('sell_price', 10, 2);
+           // $table->decimal('sell_price', 10, 2);
             $table->timestamps();
         });
         DB::table('medicines')->update([

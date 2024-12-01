@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $faker = \Faker\Factory::create();
+\Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
     }
 }
