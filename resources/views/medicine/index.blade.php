@@ -18,11 +18,11 @@
 
     <!-- Sort Order Options (Asc or Desc) -->
     <select name="sort_order">
-        <option value="asc" {{ $sort_order == 'asc' ? 'selected' : '' }}>A-Z</option>
-        <option value="desc" {{ $sort_order == 'desc' ? 'selected' : '' }}>Z-A</option>
+        <option value="asc" {{ $sort_order == 'asc' ? 'selected' : '' }}>asc</option>
+        <option value="desc" {{ $sort_order == 'desc' ? 'selected' : '' }}>desc</option>
     </select>
 
-    <x-button>Apply Filters</x-button>
+    <x-form-button>Apply Filters</x-form-button>
 </form>
         @foreach ($medicines as $medicine)
             <a href="/medicines/{{ $medicine['id'] }}" class="block px-4 py-6 border border-gray-200 rounded-lg">
