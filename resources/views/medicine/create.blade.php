@@ -15,7 +15,7 @@
                     <!-- Medicine Name -->
                     <x-form-field>
                         <x-form-label for="medicine_name">Medicine Name</x-form-label>
-                        <div class ="mt-2" style="color: black;">
+                        <div class="mt-2" style="color: black;">
                             <select name="medicine_name" style="color: black;" id="medicine_name" class="block w-full p-2 border" required>
                                 <option value="" style="color: black;">Select a Medicine</option>
                                 @foreach($medicines as $medicine)
@@ -48,6 +48,9 @@
                             <x-form-error name="unit_price" />
                         </div>
                     </x-form-field>
+                                        <!-- quantity -->
+                    <input type = "hidden" name ="quantity" id="quantity"value="1">
+                    </input>
                 </div>
             </div>
         </div>

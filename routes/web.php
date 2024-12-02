@@ -20,25 +20,12 @@ Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy']);
 
 // Medicine Routes
-<<<<<<< HEAD
-Route::get('/medicines', [MedicineController::class, 'index'])->name('medicines.index')->middleware('auth');
-Route::get('/medicines/{medicine}', [MedicineController::class, 'show'])->middleware('auth');;
-Route::get('/medicines/{medicine}/edit', [MedicineController::class, 'edit'])->middleware('auth');;
-Route::patch('/medicines/{medicine}', [MedicineController::class, 'update'])->middleware('auth');;
-Route::post('/medicines', [MedicineController::class, 'store'])->middleware('auth');;    
-
-
-=======
-Route::get('/medicines', [MedicineController::class, 'index'])->name('medicines.index');
-// Display the form to add a new medicine
 Route::get('/medicines/create', [MedicineController::class, 'create'])->name('medicines.create');
-Route::get('/medicines/{medicine}', [MedicineController::class, 'show']);
-Route::get('/medicines/{medicine}/edit', [MedicineController::class, 'edit']);
-Route::patch('/medicines/{medicine}', [MedicineController::class, 'update']);
-// Route to handle form submission and store the new medicine (POST)
-Route::post('/medicines', [MedicineController::class, 'store'])->name('medicines.store');
->>>>>>> 36a02aa (added medicine create keemrut)
-
+Route::get('/medicines', [MedicineController::class, 'index'])->name('medicines.index')->middleware('auth');
+Route::get('/medicines/{medicine}', [MedicineController::class, 'show'])->middleware('auth');
+Route::get('/medicines/{medicine}/edit', [MedicineController::class, 'edit'])->middleware('auth');
+Route::patch('/medicines/{medicine}', [MedicineController::class, 'update'])->middleware('auth');
+Route::post('/medicines', [MedicineController::class, 'store'])->middleware('auth')->name('medicines.store');
 
 // Supplier Routes
 

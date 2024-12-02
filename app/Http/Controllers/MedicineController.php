@@ -53,8 +53,6 @@ class MedicineController extends Controller
 
     public function update(Medicine $medicine)
 {
-    Gate::authorize('edit-medicine', $medicine);
-
     request()->validate([
         'medicine_name' => ['required', 'min:3'],
         'otc' => ['required'],
@@ -73,14 +71,14 @@ class MedicineController extends Controller
     return redirect('/medicines/' . $medicine->id);    
 }
 
-public function create()
-{
-    // Fetch all suppliers to pass to the view
-    $medicines = Medicine::all();
-    $suppliers = Supplier::all();
-    return view('medicine.create', compact('suppliers', 'medicines'));
-    
-}
+    public function create()
+    {
+        // Fetch all suppliers to pass to the view
+        $medicines = Medicine::all();
+        $suppliers = Supplier::all();
+        return view('medicine.create', compact('suppliers', 'medicines'));
+        
+    }
 
 public function store(Request $request)
 {

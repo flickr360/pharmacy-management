@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('medicine_name');
             $table->foreignIdFor(\App\Models\Supplier::class);
             $table->boolean('otc')->default(true);
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->timestamp('expires_at')->nullable();
             $table->decimal('unit_price', 10, 2);
            // $table->decimal('sell_price', 10, 2);

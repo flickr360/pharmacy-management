@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Medicine extends Model
 {
-    protected $fillable = ['medicine_name', 'supplier_id', 'unit_price'];
+    use HasFactory;
+
+    protected $guarded = [];
 
     // Define the relationship to Supplier
     public function supplier()
