@@ -8,7 +8,9 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
+    <p class="mt-6">
+           <x-button href="/orders/create">Add Order</x-button>
+        </p>
     <table class="table table-bordered rounded-lg border-gray" style="background:white;">
         <thead>
             <tr>
@@ -31,6 +33,17 @@
                             @endforeach
                         </ul>
                     </td>
+                    <td>
+                    <a href="/orders/{{ $order->id }}/edit " class="btn btn-warning btn-sm">Edit</a>
+
+                    <form action="/orders/{{ $order->id }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">
+                            Delete
+                        </button>
+                    </form>
+                </td>
                 </tr>
             @empty
                 <tr>

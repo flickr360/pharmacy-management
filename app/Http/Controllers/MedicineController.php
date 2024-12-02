@@ -52,10 +52,11 @@ class MedicineController extends Controller
 
     public function update(Medicine $medicine)
 {
+    Gate::authorize('edit-medicine', $medicine);
+
     request()->validate([
         'medicine_name' => ['required', 'min:3'],
         'otc' => ['required'],
-        'supplier' => ['required'],
         'unit_price' => ['required'],
     ]);
 
@@ -63,7 +64,6 @@ class MedicineController extends Controller
     $medicine->update([
         'medicine_name' => request('medicine_name'),
         'otc' => request('otc'),
-        'supplier' => request('supplier'),
         'unit_price' => request('unit_price'),
     ]);
 

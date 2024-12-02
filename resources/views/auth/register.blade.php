@@ -88,7 +88,7 @@
 
             <!-- Action Buttons Section -->
             <div class="action-buttons">
-                <a href="/" class="cancel-link">Cancel</a>
+                <a href="/login" class="cancel-link">Cancel</a>
                 <button type="submit" class="form-button">Register</button>
             </div>
         </form>

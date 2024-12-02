@@ -14,7 +14,7 @@
             <div class="inline-flex items-center gap-x-2">
                 <div >
                             <!-- Logo -->
-                    <a href=""><img class="w-10 h-10 bg-white rounded-xl py-1 px-1"src="{{ asset('img/icon.jfif') }}" alt=""></a>
+                    <a href=""><img class="w-10 h-10 bg-white rounded-xl py-1 px-1"src="{{ asset('images/pill-icon.png') }}" alt=""></a>
                 </div>
                 <div class="">
                 <x-nav-link href="/medicines" :active="request()->is('medicines')"><button>Medicine</button></x-nav-link >

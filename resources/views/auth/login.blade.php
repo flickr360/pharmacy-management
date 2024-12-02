@@ -51,7 +51,7 @@
 
         <!-- Link to Register Page -->
         <div class="register-link-container">
-            <a href="{{ route('register') }}" class="register-link">Don't have an account? Register</a>
+            <a href="/register" class="register-link">Don't have an account? Register</a>
         </div>
     </div>
 
