@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medicine;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -72,5 +73,32 @@ class MedicineController extends Controller
     return redirect('/medicines/' . $medicine->id);    
 }
 
+public function create()
+{
+    // Fetch all suppliers to pass to the view
+    $medicines = Medicine::all();
+    $suppliers = Supplier::all();
+    return view('medicine.create', compact('suppliers', 'medicines'));
+    
 }
 
+public function store(Request $request)
+{
+    // Validate the incoming request
+    $validated = $request->validate([
+        'medicine_name' => 'required|string|max:255',
+        'supplier_id' => 'required|exists:suppliers,id',
+        'unit_price' => 'required|numeric',
+    ]);
+
+    // Create a new medicine record
+    Medicine::create([
+        'medicine_name' => $validated['medicine_name'],
+        'supplier_id' => $validated['supplier_id'],
+        'unit_price' => $validated['unit_price'],
+    ]);
+
+    // Redirect to the medicines index
+    return redirect()->route('medicines.index')->with('success', 'Medicine created successfully!');
+}
+}
