@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,4 +40,8 @@ Route::get('/suppliers/{supplier}/edit', [SupplierController::class, 'edit']);
 Route::patch('/suppliers/{supplier}', [SupplierController::class, 'update']);
 Route::delete('/suppliers/{supplier}', [SupplierController::class, 'destroy']);
 
+//Order routes
 
+Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

@@ -16,7 +16,7 @@
            <x-button href="/suppliers/create">Add Supplier</x-button>
         </p>
         <!-- Display a table of suppliers -->
-        <table class="table rounded-md" style="background:white;">
+        <table class="table bordered rounded-md" style="background:white;">
             <thead>
                 <tr>
                     <th>Name</th>
