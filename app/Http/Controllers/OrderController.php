@@ -41,10 +41,11 @@ class OrderController extends Controller
 
     // app/Http/Controllers/OrderController.php
     public function index()
-    {
-        $orders = Order::with(['supplier', 'medicines'])->get(); // Load supplier and medicines relationships
-        return view('orders.index', compact('orders'));
-    }
+{
+    $orders = Order::with(['supplier', 'medicines'])->paginate(10); // Paginate 10 orders per page
+    return view('orders.index', compact('orders'));
+}
+
     
     public function edit($id)
     {

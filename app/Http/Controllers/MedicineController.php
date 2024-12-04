@@ -31,7 +31,6 @@ class MedicineController extends Controller
             $query->orderBy('quantity', $sort_order);
         }
 
-        // Paginate the results (10 items per page)
         $medicines = $query->paginate(10);
 
         // Return the view with the filtered/sorted medicines and current search/filter parameters

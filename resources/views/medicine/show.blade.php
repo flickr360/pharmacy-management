@@ -1,31 +1,103 @@
-<x-layout>
-    <x-slot:heading>
-        Medicine Information
-    </x-slot:heading>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Information</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/glassmorphism.css') }}">;
+    <link rel="stylesheet" href="{{ asset('css/background5.css') }}">;
 
-    @if (session('success'))
-        <div class="mb-4 px-4 py-3 text-green-800 bg-green-100 border border-green-200 rounded">
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            feather.replace();
+        });
+</script>
+</head>
+<body>
+<nav class="menu" id="nav">
+    <span class="nav-item active">
+        <span class="icon">
+            <i data-feather="shopping-cart"></i>
+        </span>
+        <a href="/orders">Orders</a>
+    </span>
+    <span class="nav-item">
+        <span class="icon">
+            <i data-feather="heart"></i>
+        </span>
+        <a href="/medicines">Medicines</a>
+    </span>
+    <span class="nav-item">
+        <span class="icon">
+            <i data-feather="truck"></i>
+        </span>
+        <a href="/suppliers">Suppliers</a>
+    </span>
+    <span class="nav-item">
+        <span class="icon">
+            <i data-feather="log-out"></i>
+        </span>
+        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="nav-link btn btn-link text-white">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+        </form>
+    </span>
+</nav>
+
+
+    <div class="container mt-4 p-2">
+        <!-- Heading -->
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">Medicine Information</h1>
+            </div>
+        </div>
+
+        @if (session('success'))
+        <div class="mb-4 alert alert-success" role="alert">
             {{ session('success') }}
         </div>
-    @endif
+        @endif
 
-    <div class="block px-4 py-6 border border-gray-200 rounded-lg">
-        <x-form-label>Medicine name</x-form-label>
-        <h1 class="font-bold text-lg mt-5 mb-5">{{ $medicine->medicine_name }}</h1>
+        <!-- Medicine Details -->
+        <div class="block px-4 py-8">
+            <div class="mb-4">
+                <label class="form-label">Medicine name</label>
+                <h1 class="font-weight-bold text-lg mt-3">{{ $medicine->medicine_name }}</h1>
+            </div>
 
-        <x-form-label class="font-bold text-lg mt-10 mb-5">OTC:</x-form-label>
-        <h1 class="font-bold text-lg mt-5 mb-5">{{ $medicine->otc }}</h1>
+            <div class="mb-4">
+                <label class="form-label font-weight-bold text-lg mt-3">OTC:</label>
+                <h1 class="font-weight-bold text-lg mt-3">{{ $medicine->otc }}</h1>
+            </div>
 
-        <x-form-label>Supplier:</x-form-label>
-        <h1 class="font-bold text-lg mt-5 mb-5">{{ $medicine->supplier->name }}</h1>
+            <div class="mb-4">
+                <label class="form-label">Supplier:</label>
+                <h1 class="font-weight-bold text-lg mt-3">{{ $medicine->supplier->name }}</h1>
+            </div>
 
-        <x-form-label>Unit Price:</x-form-label>
-        <h1 class="font-bold text-lg mt-5 mb-5">{{ $medicine->unit_price }}</h1>
-        @auth
+            <div class="mb-4">
+                <label class="form-label">Unit Price:</label>
+                <h1 class="font-weight-bold text-lg mt-3">{{ $medicine->unit_price }}</h1>
+            </div>
 
-        <p class="mt-6">
-            <x-button href="/medicines/{{ $medicine->id }}/edit">Edit</x-button>
-        </p>    
-        @endauth
+            @auth
+            <p class="mt-4">
+                <a href="/medicines/{{ $medicine->id }}/edit" class="btn btn-primary">Edit</a>
+            </p>    
+            @endauth
+        </div>
     </div>
-</x-layout>
+
+    <!-- Bootstrap JS (Optional for additional features like modals, tooltips) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

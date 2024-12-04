@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication successful, redirect to landing page
-            return redirect()->route('landing');
+            return redirect()->route('medicines.index'); 
         }
 
         // Authentication failed, return back with error message

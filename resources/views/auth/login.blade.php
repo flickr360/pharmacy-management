@@ -14,7 +14,18 @@
             <h2>Log In</h2>
         </div>
 
-        <form method="POST" action="/login">
+        <!-- Display any general authentication error (invalid credentials) -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-fields">
                 <!-- Email Field -->
@@ -24,9 +35,14 @@
                         name="email"
                         id="email"
                         type="email"
+                        value="{{ old('email') }}" 
                         required
+                        class="{{ $errors->has('email') ? 'input-error' : '' }}" 
                     />
-                    <div class="error-message"></div>
+                    <!-- Display error message for email field -->
+                    @if ($errors->has('email'))
+                        <div class="error-message">{{ $errors->first('email') }}</div>
+                    @endif
                 </div>
 
                 <!-- Password Field -->
@@ -37,19 +53,21 @@
                         id="password"
                         type="password"
                         required
+                        class="{{ $errors->has('password') ? 'input-error' : '' }}" 
                     />
-                    <div class="error-message"></div>
+                    @if ($errors->has('password'))
+                        <div class="error-message">{{ $errors->first('password') }}</div>
+                    @endif
                 </div>
             </div>
 
-            <!-- Action Buttons Section -->
             <div class="action-buttons">
-                <a href="/" class="cancel-link">Cancel</a>
                 <button type="submit" class="submit-btn">Log In</button>
+                <a href="/" class="cancel-link">Cancel</a>
+                <span></span>
             </div>
         </form>
 
-        <!-- Link to Register Page -->
         <div class="register-link-container">
             <a href="/register" class="register-link">Don't have an account? Register</a>
         </div>

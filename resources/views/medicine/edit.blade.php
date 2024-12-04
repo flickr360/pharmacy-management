@@ -1,88 +1,60 @@
-<x-layout>
-    <x-slot:heading>
-        Edit Medicine: {{ $medicine->medicine_name }}
-    </x-slot:heading>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Medicine</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/glassmorphism.css') }}">;
+    <link rel="stylesheet" href="{{ asset('css/background1.css') }}">;
+</head>
+<body>
+    <div class="container mt-4 p-2">
+        <h1 class="text-center">Edit Medicine: {{ $medicine->medicine_name }}</h1>
+        
+        <form method="POST" action="/medicines/{{ $medicine->id }}">
+            @csrf
+            @method('PATCH')
 
-    <form method="POST" action="/medicines/{{ $medicine->id }}">
-        @csrf
-        @method('PATCH')
-
-        <div class="space-y-12">
-            <div class="border-b border-white-900/10 pb-12">
-                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
-                        <label for="medicine_name" class="block text-sm font-medium leading-6 text-white-900">Medicine Name</label>
-                        <div class="mt-2">
-                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                <input
-                                    type="text"
-                                    name="medicine_name"
-                                    id="medicine_name"
-                                    class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-white-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    placeholder="Medicine Name"
-                                    value="{{ $medicine->medicine_name }}"
-                                    required>
-                            </div>
-
-                            @error('medicine_name')
-                                <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="sm:col-span-4">
-                        <label for="otc" class="block text-sm font-medium leading-6 text-white-900">OTC</label>
-                        <div class="mt-2">
-                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                <input
-                                    type="boolean"
-                                    name="otc"
-                                    id="otc"
-                                    class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-white-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    value="{{ $medicine->otc }}"
-                                    required>
-                            </div>
-
-                            @error('otc')
-                                <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="sm:col-span-4">
-                        <label for="unit_price" class="block text-sm font-medium leading-6 text-white-900">Unit Price</label>
-                        <div class="mt-2">
-                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                <input
-                                    type="text"
-                                    name="unit_price"
-                                    id="unit_price"
-                                    class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-white-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    value="{{ $medicine->unit_price }}"
-                                    required>
-                            </div>
-
-                            @error('unit_price')
-                                <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <label for="medicine_name" class="form-label">Medicine Name</label>
+                <input type="text" name="medicine_name" id="medicine_name" class="form-control" placeholder="Medicine Name" value="{{ $medicine->medicine_name }}" required>
+                @error('medicine_name')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
-        </div>
 
-        <div class="flex items-center gap-x-6">
-            <a href="/medicines/{{ $medicine->id }}" class="text-sm font-semibold leading-6 text-white-900">Cancel</a>
-
-            <div>
-                <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Update
-                </button>
+            <div class="mb-3">
+                <label for="otc" class="form-label">OTC</label>
+                <input type="checkbox" name="otc" id="otc" class="form-check-input" {{ $medicine->otc ? 'checked' : '' }} required>
+                @error('otc')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
-        </div>
-    </form>
 
-    <form method="POST" action="/medicines/{{ $medicine->id }}">
-        @csrf
-        @method('DELETE')
-    </form>
-</x-layout>
+            <div class="mb-3">
+                <label for="unit_price" class="form-label">Unit Price</label>
+                <input type="text" name="unit_price" id="unit_price" class="form-control" placeholder="Unit Price" value="{{ $medicine->unit_price }}" required>
+                @error('unit_price')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="/medicines/{{ $medicine->id }}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+
+        <!-- Form for Delete (hidden) -->
+        <form method="POST" action="/medicines/{{ $medicine->id }}" style="display: none;">
+            @csrf
+            @method('DELETE')
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (Optional for additional features like modals, tooltips) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
